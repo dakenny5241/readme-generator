@@ -58,8 +58,13 @@ function writeToFile(fileName, data) {
     return fs.writeFileSync(path.join(process.cwd(), fileName), data);
 }
 
-// TODO: Create a function to initialize app
-function init() {}
+// Create a function to initialize app
+function init() {
+    inquirer.prompt(questions).then(function(response){
+        console.log(response);
+        writeToFile('genREADME.md', generateMarkdown(response));
+    });
+}
 
 // Function call to initialize app
 init();
